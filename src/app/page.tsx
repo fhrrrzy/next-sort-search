@@ -51,7 +51,44 @@ const generateName = () => {
   }`;
 };
 
-const useStore = create((set) => ({
+interface StoreState {
+  names: string[];
+  inputName: string;
+  searchName: string;
+  errorMessage: string;
+  searchError: string;
+  sorting: boolean;
+  searching: boolean;
+  randomizing: boolean;
+  currentIndex: number;
+  swapMarker: number;
+  pivotIndex: number;
+  logs: { message: string; type: string }[];
+  isSorted: boolean;
+  currentStep: string;
+  speed: number;
+  comparisons: number;
+  setNames: (names: string[]) => void;
+  setInputName: (inputName: string) => void;
+  setSearchName: (searchName: string) => void;
+  setErrorMessage: (errorMessage: string) => void;
+  setSearchError: (searchError: string) => void;
+  setSorting: (sorting: boolean) => void;
+  setSearching: (searching: boolean) => void;
+  setRandomizing: (randomizing: boolean) => void;
+  setCurrentIndex: (currentIndex: number) => void;
+  setSwapMarker: (swapMarker: number) => void;
+  setPivotIndex: (pivotIndex: number) => void;
+  setLogs: (logs: { message: string; type: string }[]) => void;
+  setIsSorted: (isSorted: boolean) => void;
+  setCurrentStep: (currentStep: string) => void;
+  setSpeed: (speed: number) => void;
+  setComparisons: (comparisons: number) => void;
+  addLog: (message: string, type: string) => void;
+  incrementComparisons: () => void;
+}
+
+const useStore = create<StoreState>((set) => ({
   names: [],
   inputName: "",
   searchName: "",
